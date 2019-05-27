@@ -1,0 +1,31 @@
+
+<ion-content color="dark">
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col  offset="1" >
+         <ion-badge color="primary" class="ion-text-center" >Peliculas Nuevas - {{iniciar}} / {{terminar}}</ion-badge>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+<app-slide-show [peliculas]='peliculas'></app-slide-show>
+
+<ion-grid fixed>
+    <ion-row>
+      <ion-col offset="1" >
+         <ion-badge color="danger">Peliculas Estreno - {{iniciar}} / {{terminar}}</ion-badge>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+<app-slide-show-poster [peliculas]='peliculas'></app-slide-show-poster>
+
+<ion-grid fixed>
+    <ion-row>
+      <ion-col offset="2" >
+         <ion-badge color="secondary">Peliculas Populares {{terminar}}</ion-badge>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+<app-slide-show-pares [peliculas]='populares'
+                      (cargarMas)="cargarMas()"></app-slide-show-pares>
+
+</ion-content>
