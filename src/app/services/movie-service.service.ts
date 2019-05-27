@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { RespuestaPelicula } from '../interfaces/interfaces';
+import { RespuestaPelicula, PeliculaDetalle, PeliculaActores } from '../interfaces/interfaces';
 
 const apiKey = environment.apiKey;
 const URL = environment.apiUrl;
@@ -19,7 +19,7 @@ private ejecutarQuery<T>( query: string ) {
 
   query = URL + query;
   query += `&api_key=${ apiKey }&language=es&include_image_language=es`;
-
+  console.log(query);
   return this.client.get<T>( query );
 
 }
@@ -51,5 +51,13 @@ getPopulares() {
 
   return this.ejecutarQuery<RespuestaPelicula>(query);
 
+}
+
+getPeliculaDetalle(id: string) {
+  return this.ejecutarQuery<PeliculaDetalle>(`/movie/${id}?a=1`);
+}
+
+getPeliculaActores(id: string) {
+  return this.ejecutarQuery<PeliculaActores>(`/movie/${id}/credits?a=1`);
 }
 }
