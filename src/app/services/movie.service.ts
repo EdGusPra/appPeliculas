@@ -9,7 +9,7 @@ const URL = environment.apiUrl;
 @Injectable({
   providedIn: 'root'
 })
-export class MovieServiceService {
+export class MovieService {
 inicio: string;
 fin: string;
 constructor(private client: HttpClient) { }
@@ -53,11 +53,11 @@ getPopulares() {
 
 }
 
-getPeliculaDetalle(id: string) {
-  return this.ejecutarQuery<PeliculaDetalle>(`/movie/${id}?a=1`);
+getPeliculaDetalle( id: string ) {
+  return this.ejecutarQuery<PeliculaDetalle>(`/movie/${ id }?a=1`);
 }
 
-getPeliculaActores(id: string) {
-  return this.ejecutarQuery<PeliculaActores>(`/movie/${id}/credits?a=1`);
+getActoresPelicula( id: string ) {
+  return this.ejecutarQuery<PeliculaActores>(`/movie/${ id }/credits?a=1`);
 }
 }

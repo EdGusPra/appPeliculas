@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieServiceService } from '../../services/movie-service.service';
+import { MovieService } from '../../services/movie.service';
 import { Peliculas } from '../../interfaces/interfaces';
 
 @Component({
@@ -12,7 +12,7 @@ peliculas: Peliculas[] = [];
 populares: Peliculas[] = [];
 iniciar: string;
 terminar: string;
-  constructor(private service: MovieServiceService) {}
+  constructor(private service: MovieService) {}
 ngOnInit() {
 
  this.mostrarPelicula();

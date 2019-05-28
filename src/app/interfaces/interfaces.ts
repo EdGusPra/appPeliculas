@@ -51,8 +51,8 @@ export interface PeliculaDetalle {
 }
 
 interface Spokenlanguage {
-  iso_639_1: string;
-  name: string;
+  iso_639_1?: string;
+  name?: string;
 }
 
 interface Productioncountry {
@@ -73,7 +73,7 @@ interface Genre {
 }
 
 
-export interface RespuestaCredits {
+export interface PeliculaActores {
   id: number;
   cast: Cast[];
   crew: Crew[];
