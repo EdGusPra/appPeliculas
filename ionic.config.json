@@ -1,5 +1,7 @@
 {
   "name": "appPelis",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

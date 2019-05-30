@@ -67,7 +67,7 @@ interface Productioncompany {
   origin_country: string;
 }
 
-interface Genre {
+export interface Genre {
   id: number;
   name: string;
 }
@@ -99,3 +99,5 @@ export interface Cast {
   order: number;
   profile_path?: string;
 }
+
+

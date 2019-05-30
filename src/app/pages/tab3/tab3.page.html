@@ -1,9 +1,16 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Tab Three
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content></ion-content>
+
+<ion-content color="dark">
+  
+  <div *ngFor="let item of favoritoGenero">
+    <ion-grid fixed *ngIf="item.pelis.length>0">
+      <ion-row>
+        <ion-col >
+        <ion-badge color="primary" mode="ios">{{item.genero}}</ion-badge>
+        </ion-col>
+      </ion-row>
+      <app-slide-show-poster [peliculas]="item.pelis"></app-slide-show-poster>
+    </ion-grid>
+
+  </div>
+</ion-content>

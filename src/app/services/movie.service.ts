@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { RespuestaPelicula, PeliculaDetalle, PeliculaActores } from '../interfaces/interfaces';
+import { RespuestaPelicula, PeliculaDetalle, PeliculaActores, Genre } from '../interfaces/interfaces';
 
 const apiKey = environment.apiKey;
 const URL = environment.apiUrl;
@@ -12,6 +12,7 @@ const URL = environment.apiUrl;
 export class MovieService {
 inicio: string;
 fin: string;
+generos: Genre[] = [];
 constructor(private client: HttpClient) { }
 private contador = 0;
 
@@ -19,9 +20,8 @@ private ejecutarQuery<T>( query: string ) {
 
   query = URL + query;
   query += `&api_key=${ apiKey }&language=es&include_image_language=es`;
-  console.log(query);
+  // console.log(query);
   return this.client.get<T>( query );
-
 }
 
 getConfig() {
@@ -60,4 +60,18 @@ getPeliculaDetalle( id: string ) {
 getActoresPelicula( id: string ) {
   return this.ejecutarQuery<PeliculaActores>(`/movie/${ id }/credits?a=1`);
 }
+
+getBusqueda(busqueda: string) {
+  const query = `/search/movie?query=${busqueda}`;
+  return this.ejecutarQuery<RespuestaPelicula>(query);
 }
+
+    getGenre(): Promise<Genre[]> {
+      return new Promise(resolve => {
+        this.ejecutarQuery('/genre/movie/list?a=1')
+        .subscribe(genero => {this.generos = genero['genres']; console.log(this.generos);
+                              resolve(this.generos);
+      });
+      });
+    }
+  }

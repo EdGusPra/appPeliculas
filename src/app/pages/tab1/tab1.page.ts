@@ -18,14 +18,14 @@ ngOnInit() {
  this.mostrarPelicula();
  this.getPopulares();
 //  this.service.getPopulares().subscribe(resp => {
-//   console.log('respuesta', resp);
+//   .log('respuesta', resp);
 //   this.populares = resp.results; } );
  this.iniciar = this.service.inicio;
  this.terminar = this.service.fin;
 }
 
 cargarMas() {
-this.service.getPopulares();
+this.getPopulares();
 }
 
 mostrarPelicula() {
@@ -36,9 +36,8 @@ this.service.getConfig()
 getPopulares() {
   this.service.getPopulares()
   .subscribe( resp => {
-  console.log('Populares', resp.results);
-    const arrTemp = [ ...this.populares, ...resp.results ];
-    this.populares = arrTemp;
+  const arrTemp = [ ...this.populares, ...resp.results ];
+  this.populares = arrTemp;
   });
 }
 

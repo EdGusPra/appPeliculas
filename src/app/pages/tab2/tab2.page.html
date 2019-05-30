@@ -1,9 +1,58 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header no-border>
+  <ion-toolbar color ="dark">
     <ion-title>
       Tab Two
     </ion-title>
   </ion-toolbar>
+  <ion-toolbar color ="dark">
+    <ion-searchbar  placeholder="Buscar" 
+                    (ionChange)="onSearchChange($event) " [debounce]="700"
+                    [value]="textoBuscar"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+
+<ion-content color="dark">
+
+  <ion-grid fixed>
+    <ion-row *ngIf="search==true">
+      <ion-col offset="5">
+        <ion-spinner name="bubbles"></ion-spinner>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list color="dark" class="list" *ngIf="search2==false">
+    <ion-list-header color="dark">
+      <ion-badge>Sugerencias</ion-badge>
+    </ion-list-header>
+    <ion-item color="dark"
+    *ngFor="let idea of superheroes"
+              (click) ="textoBuscar=idea.title">
+      <ion-label
+      color="primary"                                              text-capitalize
+                  >{{idea.title}}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col *ngFor="let i of busqueda" size="6">
+        <ion-card>
+                <ion-label *ngIf="busqueda.length==0"color="ligth">No hay resultados para mostrar</ion-label>
+              
+          <ion-card-header *ngIf="busqueda.length!=0">
+            <img [src]="i.poster_path | imagen" *ngIf="i.poster_path" alt="">
+            <img src="./assets/img/no-avatar.jpg" *ngIf="!i.poster_path" alt="">
+            <ion-card-subtitle>{{i.title}}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-label>{{i.release_date}}</ion-label>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>

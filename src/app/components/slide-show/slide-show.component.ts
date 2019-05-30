@@ -18,12 +18,16 @@ export class SlideShowComponent implements OnInit {
 
   ngOnInit() {}
 
-async mostrarModal(id) {
-const mostrarModalComponent = await this.modal.create({
+async verDetalle( id ){
+const mostrarModal = await this.modal.create({
   component: DetallesComponent,
   componentProps: {id}
 });
-return await mostrarModalComponent.present();
+return await mostrarModal.present();
+  }
+
+  cerrar(){
+    this.modal.dismiss();
   }
 
 }
